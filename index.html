@@ -1,8 +1,82 @@
 [
   {
-    "remarks": "🇷🇺Россия (YouTube без рекламы)",
+    "remarks": "🇸🇴⚡ Авто-обход | WI-FI",
+    "meta": {
+      "serverDescription": "Автоматический выбор лучшего сервера (24 сервера)"
+    },
+    "dns": {
+      "servers": [
+        "1.1.1.1",
+        "1.0.0.1",
+        "8.8.8.8",
+        "8.8.4.4"
+      ],
+      "queryStrategy": "UseIP"
+    },
+    "log": {
+      "loglevel": "warning"
+    },
+    "routing": {
+      "rules": [
+        {
+          "type": "field",
+          "network": "tcp,udp",
+          "balancerTag": "auto-wifi"
+        }
+      ],
+      "balancers": [
+        {
+          "tag": "auto-wifi",
+          "selector": [
+            "proxy1", "proxy2", "proxy3", "proxy4", "proxy5",
+            "proxy6", "proxy7", "proxy8", "proxy9", "proxy10",
+            "proxy11", "proxy12", "proxy13", "proxy14", "proxy15",
+            "proxy16", "proxy17", "proxy18", "proxy19", "proxy20",
+            "proxy21", "proxy22", "proxy23", "proxy24"
+          ],
+          "strategy": {
+            "type": "random"
+          },
+          "fallbackTag": "reserve"
+        }
+      ],
+      "domainMatcher": "hybrid",
+      "domainStrategy": "IPIfNonMatch"
+    },
+    "inbounds": [
+      {
+        "tag": "socks",
+        "port": 10808,
+        "listen": "127.0.0.1",
+        "protocol": "socks",
+        "settings": {
+          "udp": true,
+          "auth": "noauth"
+        },
+        "sniffing": {
+          "enabled": true,
+          "routeOnly": false,
+          "destOverride": ["http", "tls", "quic"]
+        }
+      },
+      {
+        "tag": "http",
+        "port": 10809,
+        "listen": "127.0.0.1",
+        "protocol": "http",
+        "settings": {
+          "allowTransparent": false
+        },
+        "sniffing": {
+          "enabled": true,
+          "routeOnly": false,
+          "destOverride": ["http", "tls", "quic"]
+        }
+      }
+    ],
     "outbounds": [
       {
+        "tag": "proxy1",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -21,21 +95,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "1N0OLDaYo_eTim0DRDiAQ4ypY25KyGm5TyiLKqMGQik",
-            "shortId": "a039212c"
+            "shortId": "a039212c",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇩🇪Германия",
-    "outbounds": [
+      },
       {
+        "tag": "proxy2",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -53,24 +124,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "wDJibB6Rd20xkiSeIKLLo60DsKqB3il6gtXlpYxITj4",
-            "shortId": "977aa6df"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "977aa6df",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇳🇱Нидерланды",
-    "outbounds": [
+      },
       {
+        "tag": "proxy3",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -89,21 +156,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "-Ip8VUNFCdnt03bAS90yHxL91mf49D2dJmkKB_d_n0g",
-            "shortId": "b5dd1544"
+            "shortId": "b5dd1544",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇲🇩Молдова | Для торрентов 💾",
-    "outbounds": [
+      },
       {
+        "tag": "proxy4",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -122,21 +186,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "RTJejnFwln1GAFLeyZ4NRcMpvsRiL1Yu-WFRy8NtIwU",
-            "shortId": "a0a5d889"
+            "shortId": "a0a5d889",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇺🇸США",
-    "outbounds": [
+      },
       {
+        "tag": "proxy5",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -155,21 +216,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "IhcYDA8gF5PuTtKLu-kB6zezpqAKQvnjE_XbgNg8nXI",
-            "shortId": "157ce3ba"
+            "shortId": "157ce3ba",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇬🇧Великобритания",
-    "outbounds": [
+      },
       {
+        "tag": "proxy6",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -188,21 +246,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "i5_jSoc9DraIlWT7xls9w5PxjeaIjwBS_24nPX_9eGE",
-            "shortId": "051880fe"
+            "shortId": "051880fe",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇫🇷Франция",
-    "outbounds": [
+      },
       {
+        "tag": "proxy7",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -221,21 +276,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "5isIe0GLddqsEuDcnLop5Ex3q4Ibg_AKpogxAvhLMWs",
-            "shortId": "4501f602"
+            "shortId": "4501f602",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇹🇷Турция",
-    "outbounds": [
+      },
       {
+        "tag": "proxy8",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -254,21 +306,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "DAdWhCSXRRcho_XopxBKq2-KDupbSY_i2r-FJCy58kY",
-            "shortId": "5a3874f1"
+            "shortId": "5a3874f1",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇯🇵Япония",
-    "outbounds": [
+      },
       {
+        "tag": "proxy9",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -287,21 +336,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "a7QPumBr-7EpnnPJ8TRr38MapK3xNGt59kfdPwud4xA",
-            "shortId": "48ced39e"
+            "shortId": "48ced39e",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇭🇰Гонконг",
-    "outbounds": [
+      },
       {
+        "tag": "proxy10",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -320,21 +366,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "i99m8BfB43elnzSqXUjP2dW1oQHNwg_Tx7O9x2dGfVM",
-            "shortId": "bdb1a66a"
+            "shortId": "bdb1a66a",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇸🇪Швеция",
-    "outbounds": [
+      },
       {
+        "tag": "proxy11",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -353,21 +396,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "UtAnh-HlChjh3afrhycDmeOSFs7cZBjIJx0qG7NB5Rc",
-            "shortId": "b419319c"
+            "shortId": "b419319c",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇫🇮Финляндия",
-    "outbounds": [
+      },
       {
+        "tag": "proxy12",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -385,24 +425,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "vLb66rBLZnMI1VPKxp90Dcuc0p2fyHdL3HwaxvNHzTA",
-            "shortId": "f3a0090e"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "f3a0090e",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇪Эстония",
-    "outbounds": [
+      },
       {
+        "tag": "proxy13",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -420,24 +456,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "nP6l7_NPVUklPsrochXfsGGjbDHMHGWodoXN3h_6RQU",
-            "shortId": "b71a4299"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "b71a4299",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇵🇱Польша",
-    "outbounds": [
+      },
       {
+        "tag": "proxy14",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -455,24 +487,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "DaQjKlJbC2ksBaItYb0fjt1xkIcxRh_STIQ4rkrydjY",
-            "shortId": "7db44191"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "7db44191",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇨🇿Чехия",
-    "outbounds": [
+      },
       {
+        "tag": "proxy15",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -490,24 +518,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "TXwYCrwkhTEeqtxTf3ZYmXNwYcmVtR9eVXJRo7Kvxmk",
-            "shortId": "8c5041b3"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "8c5041b3",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇭🇺Венгрия",
-    "outbounds": [
+      },
       {
+        "tag": "proxy16",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -526,21 +550,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "LubLmalkyXoDFKxVQLtf1mh5cVK7W8K-MeNQf6ZDQ2I",
-            "shortId": "9e354fd8"
+            "shortId": "9e354fd8",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇸Испания",
-    "outbounds": [
+      },
       {
+        "tag": "proxy17",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -558,24 +579,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "fJGvGs_j23gTjn5q5QWCOsD3TeIdOqkpSLv7geS6AQI",
-            "shortId": "2b8c5943"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "2b8c5943",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇵🇹Португалия",
-    "outbounds": [
+      },
       {
+        "tag": "proxy18",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -593,24 +610,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "kUuy5M4V5bfjri7m_XBryv1YTLLlPLPIwPotJJgpgEc",
-            "shortId": "87922049"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "87922049",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇮🇹Италия",
-    "outbounds": [
+      },
       {
+        "tag": "proxy19",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -628,24 +641,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "3hiGU9oArRYulbhHEJa7nTfx1k0XL6ItE_xs-8Yi_Uc",
-            "shortId": "17a2a5e0"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "17a2a5e0",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇨🇭Швейцария",
-    "outbounds": [
+      },
       {
+        "tag": "proxy20",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -664,21 +673,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "sT3IlhEi8k7BA0jYkn5TkJ8HcX3_FZ7USnfnqCAGrhw",
-            "shortId": "1750fe7d"
+            "shortId": "1750fe7d",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇳🇴Норвегия",
-    "outbounds": [
+      },
       {
+        "tag": "proxy21",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -697,21 +703,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "Zj7pfZMGav4r5mbPzpi5ohHue1r0El7QfnQt5nx2ljI",
-            "shortId": "56d5a8fb"
+            "shortId": "56d5a8fb",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇸🇰Словакия",
-    "outbounds": [
+      },
       {
+        "tag": "proxy22",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -729,24 +732,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "WMO-BNY1BX2nNlOOQgxLP4D3H-OnE2ypbXlbSMjLRVM",
-            "shortId": "e764f0ea"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "e764f0ea",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇷🇴Румыния",
-    "outbounds": [
+      },
       {
+        "tag": "proxy23",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -764,24 +763,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "DxMGwax3l0UxFYZE349Fs15huyc4Jwzj6MG7Qrj0HQ0",
-            "shortId": "735093d7"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "735093d7",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇰🇿Казахстан",
-    "outbounds": [
+      },
       {
+        "tag": "proxy24",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -800,21 +795,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "vsDwubDjDjfLpWAHRNFGVfmC8hLiXDablO1iOOXdUhQ",
-            "shortId": "01e4de88"
+            "shortId": "01e4de88",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇦🇲Армения",
-    "outbounds": [
+      },
       {
+        "tag": "reserve",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -833,54 +825,111 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "SgV6vBorDPinOHb19xf_3sCP_IUI5Ot9zv7lPuUVhjM",
-            "shortId": "1388c268"
+            "shortId": "1388c268",
+            "fingerprint": "firefox"
           }
         }
+      },
+      {
+        "tag": "direct",
+        "protocol": "freedom",
+        "settings": {}
+      },
+      {
+        "tag": "block",
+        "protocol": "blackhole",
+        "settings": {}
       }
-    ]
+    ],
+    "observatory": {
+      "enabled": true,
+      "probeURL": "http://www.msftconnecttest.com/connecttest.txt",
+      "probeInterval": "3s",
+      "subjectSelector": [
+        "proxy1", "proxy2", "proxy3", "proxy4", "proxy5",
+        "proxy6", "proxy7", "proxy8", "proxy9", "proxy10",
+        "proxy11", "proxy12", "proxy13", "proxy14", "proxy15",
+        "proxy16", "proxy17", "proxy18", "proxy19", "proxy20",
+        "proxy21", "proxy22", "proxy23", "proxy24"
+      ]
+    }
   },
   {
-    "remarks": "🇮🇱Израиль",
-    "outbounds": [
+    "remarks": "🇪🇺📱 Авто-обход | LTE",
+    "meta": {
+      "serverDescription": "Автоматический выбор лучшего сервера (11 серверов)"
+    },
+    "dns": {
+      "servers": [
+        "1.1.1.1",
+        "1.0.0.1"
+      ],
+      "queryStrategy": "UseIP"
+    },
+    "routing": {
+      "rules": [
+        {
+          "type": "field",
+          "network": "tcp,udp",
+          "balancerTag": "auto-lte"
+        }
+      ],
+      "balancers": [
+        {
+          "tag": "auto-lte",
+          "selector": [
+            "proxy1", "proxy2", "proxy3", "proxy4", "proxy5",
+            "proxy6", "proxy7", "proxy8", "proxy9", "proxy10",
+            "proxy11"
+          ],
+          "strategy": {
+            "type": "random"
+          },
+          "fallbackTag": "reserve"
+        }
+      ],
+      "domainMatcher": "hybrid",
+      "domainStrategy": "IPIfNonMatch"
+    },
+    "inbounds": [
       {
-        "protocol": "vless",
+        "tag": "socks",
+        "port": 10810,
+        "listen": "127.0.0.1",
+        "protocol": "socks",
         "settings": {
-          "vnext": [
-            {
-              "address": "il.alertyagency.com",
-              "port": 443,
-              "users": [
-                {
-                  "id": "f3669309-756e-45ce-89dc-1e3b703c9a7c",
-                  "encryption": "none",
-                  "flow": "xtls-rprx-vision"
-                }
-              ]
-            }
-          ]
+          "udp": true,
+          "auth": "noauth"
         },
-        "streamSettings": {
-          "network": "tcp",
-          "security": "reality",
-          "realitySettings": {
-            "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
-            "publicKey": "1XpNlsef90L81E3u3vvxwcLQDtPizZ8JKtBV8ijKRVw",
-            "shortId": "1854cebd"
-          }
+        "sniffing": {
+          "enabled": true,
+          "routeOnly": false,
+          "destOverride": ["http", "tls", "quic"]
+        }
+      },
+      {
+        "tag": "http",
+        "port": 10811,
+        "listen": "127.0.0.1",
+        "protocol": "http",
+        "settings": {
+          "allowTransparent": false
+        },
+        "sniffing": {
+          "enabled": true,
+          "routeOnly": false,
+          "destOverride": ["http", "tls", "quic"]
         }
       }
-    ]
-  },
-  {
-    "remarks": "🇪🇺Мобильный интернет #2",
+    ],
     "outbounds": [
       {
+        "tag": "proxy1",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -898,24 +947,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "AZr2ArjORQvYVsnf9V7UWZ6QwGsfz5eDlczLsAABWQM",
-            "shortId": "70989daf"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "70989daf",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇺Мобильный интернет #3",
-    "outbounds": [
+      },
       {
+        "tag": "proxy2",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -934,21 +979,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "th3X1X-WZfVfW-mctM2XQJiKQDO5iDZFKv9p3BDD7wM",
-            "shortId": "8441cdf7"
+            "shortId": "8441cdf7",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇺Мобильный интернет #4",
-    "outbounds": [
+      },
       {
+        "tag": "proxy3",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -967,21 +1009,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "zT1pXWygvJtVBuoanuZFDKNCvYyz5M-f8YSu68DG0wk",
-            "shortId": "095f70dc"
+            "shortId": "095f70dc",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇺Мобильный интернет #5",
-    "outbounds": [
+      },
       {
+        "tag": "proxy4",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -999,24 +1038,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "zT1pXWygvJtVBuoanuZFDKNCvYyz5M-f8YSu68DG0wk",
-            "shortId": "095f70dc"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "095f70dc",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇺Мобильный интернет #6",
-    "outbounds": [
+      },
       {
+        "tag": "proxy5",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -1035,21 +1070,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "2wVBh3_96eEW1Dqu4kDw-oQBEkZoV1sZ9pwjFQDdhwU",
-            "shortId": "f277187b"
+            "shortId": "f277187b",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇺Мобильный интернет #7",
-    "outbounds": [
+      },
       {
+        "tag": "proxy6",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -1067,24 +1099,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "2wVBh3_96eEW1Dqu4kDw-oQBEkZoV1sZ9pwjFQDdhwU",
-            "shortId": "f277187b"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "f277187b",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇺Мобильный интернет #8",
-    "outbounds": [
+      },
       {
+        "tag": "proxy7",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -1103,21 +1131,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "0l-_lPQW-ktNbUcXjrSyCx61ZGzA8OdWNwHHDT7l0S4",
-            "shortId": "28aa254f"
+            "shortId": "28aa254f",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇺Мобильный интернет #10",
-    "outbounds": [
+      },
       {
+        "tag": "proxy8",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -1136,21 +1161,18 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "yiAI7CwcT7kwvDnzYFIeJBrj9fs3_7_7UYtzelu8Fwo",
-            "shortId": "26b5f38e"
+            "shortId": "26b5f38e",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇺Мобильный интернет #11",
-    "outbounds": [
+      },
       {
+        "tag": "proxy9",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -1168,24 +1190,20 @@
         },
         "streamSettings": {
           "network": "grpc",
+          "grpcSettings": {
+            "serviceName": "grpc"
+          },
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "yiAI7CwcT7kwvDnzYFIeJBrj9fs3_7_7UYtzelu8Fwo",
-            "shortId": "26b5f38e"
-          },
-          "grpcSettings": {
-            "serviceName": "grpc"
+            "shortId": "26b5f38e",
+            "fingerprint": "firefox"
           }
         }
-      }
-    ]
-  },
-  {
-    "remarks": "🇪🇺Мобильный интернет #12",
-    "outbounds": [
+      },
       {
+        "tag": "proxy10",
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -1204,15 +1222,66 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "api-maps.yandex.ru",
-            "fingerprint": "firefox",
             "publicKey": "th3X1X-WZfVfW-mctM2XQJiKQDO5iDZFKv9p3BDD7wM",
-            "shortId": "8441cdf7"
+            "shortId": "8441cdf7",
+            "fingerprint": "firefox"
           }
         }
+      },
+      {
+        "tag": "reserve",
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "il.alertyagency.com",
+              "port": 443,
+              "users": [
+                {
+                  "id": "f3669309-756e-45ce-89dc-1e3b703c9a7c",
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision"
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "tcpSettings": {},
+          "security": "reality",
+          "realitySettings": {
+            "serverName": "api-maps.yandex.ru",
+            "publicKey": "1XpNlsef90L81E3u3vvxwcLQDtPizZ8JKtBV8ijKRVw",
+            "shortId": "1854cebd",
+            "fingerprint": "firefox"
+          }
+        }
+      },
+      {
+        "tag": "direct",
+        "protocol": "freedom",
+        "settings": {}
+      },
+      {
+        "tag": "block",
+        "protocol": "blackhole",
+        "settings": {}
       }
-    ]
+    ],
+    "observatory": {
+      "enabled": true,
+      "probeURL": "http://www.msftconnecttest.com/connecttest.txt",
+      "probeInterval": "3s",
+      "subjectSelector": [
+        "proxy1", "proxy2", "proxy3", "proxy4", "proxy5",
+        "proxy6", "proxy7", "proxy8", "proxy9", "proxy10",
+        "proxy11"
+      ]
+    }
   }
 ]
